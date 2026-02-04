@@ -4,7 +4,7 @@ import backgroundBg from './assets/bg_2.jpg';
 import { translations, type Language } from './transalation';
 import LangToggle from './components/LangToggle';
 import ImageDisplay from './components/ImageDisplay';
-
+import { uploadImageToModel} from './services/ModelRequest';
 interface Prediction {
   confidence_percentage: number;
   predicted_class: string;
@@ -29,18 +29,11 @@ const App: React.FC = () => {
 
   const uploadFile = async (file: File) => {
     setIsUploading(true);
-    const formData = new FormData();
-    formData.append('file', file);
-
     try {
-      const response = await fetch(
-        'https://nandagopalsb-animal-guesser.hf.space/uploadfile/',
-        { method: 'POST', body: formData }
-      );
-      const result: Prediction = await response.json();
+      const result = await uploadImageToModel(file);
       updatePredictions(result);
     } catch (error) {
-      console.error('Upload failed:', error);
+      console.error('Service Error:', error);
     } finally {
       setIsUploading(false);
     }
@@ -57,7 +50,6 @@ const App: React.FC = () => {
   };
 
   return (
-  /* The main container must be 'relative' to anchor the absolute button */
   <div 
     className="h-screen w-screen bg-cover bg-center bg-no-repeat font-sans relative overflow-hidden"
     style={{ 
@@ -65,13 +57,10 @@ const App: React.FC = () => {
       filter: 'contrast(1.05) brightness(1.1)'
     }}
   >
-    {/* BACKGROUND OVERLAY (Full screen) */}
     <div className="absolute inset-0 bg-black/5 z-0" />
 
-    {/* LANGUAGE TOGGLE - Placed outside the flexbox stack */}
     <LangToggle lang={lang} onToggle={toggleLanguage} />
 
-    {/* THE MAIN CONTENT FLEXBOX */}
     <div className="flex flex-col items-center justify-center h-full w-full relative z-10">
       
       <h2 className="text-2xl tracking-[0.1em] mb-4 text-white drop-shadow-md">
@@ -91,7 +80,7 @@ const App: React.FC = () => {
         <label className="inline-block group">
           <span className={`
             inline-block px-16 py-4 text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300
-            ${isUploading ? 'bg-stone-400 text-white' : 'bg-[#8B5E34] text-white hover:bg-black hover:-translate-y-1 active:translate-y-0 cursor-pointer shadow-xl'}
+            ${isUploading ? 'bg-stone-400 text-white' : 'bg-[#8f5d06] text-[#f1f5f0] hover:bg-black hover:-translate-y-1 active:translate-y-0 cursor-pointer shadow-xl'}
           `}>
             {isUploading ? t.wait : t.upload}
           </span>

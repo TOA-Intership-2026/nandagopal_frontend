@@ -28,7 +28,7 @@ export const translations: Record<Language, Translation> = {
     upload: "ファイルをアップロード", 
     wait: "おまちください", 
     resultPrefix: "これは ", 
-    resultSuffix: " です！", 
+    resultSuffix: "です！", 
     animals: { 
       dog: "いぬ", 
       cat: "ねこ" 
