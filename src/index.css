@@ -2,8 +2,14 @@
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-}
 
+}
+@layer base {
+  body, html {
+    margin: 0;
+    overflow: hidden; /* Prevents accidental scrolling */
+  }
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

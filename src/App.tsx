@@ -1,7 +1,6 @@
 import React, { useState, type ChangeEvent } from 'react';
-// Assuming your assets are in the src/assets folder
 import placeholderImg from './assets/image.png';
-import backgroundBg from './assets/cute.jpg';
+import backgroundBg from './assets/bg_2.jpg';
 
 interface Prediction {
   confidence_percentage: number;
@@ -23,7 +22,7 @@ const App: React.FC = () => {
         'https://nandagopalsb-animal-guesser.hf.space/uploadfile/',
         { method: 'POST', body: formData }
       );
-      const result: Prediction = await response.json();
+      const result: Prediction = await response.json(); // Assigning the type of result to Prediciton
       updatePredictions(result);
     } catch (error) {
       console.error('Upload failed:', error);
@@ -44,63 +43,52 @@ const App: React.FC = () => {
 
   return (
     <div 
-      className="h-screen w-screen bg-cover bg-center bg-no-repeat overflow-hidden flex flex-col items-center justify-center p-10 font-sans select-none relative"
-      style={{ backgroundImage: `url(${backgroundBg})` }}
+      className="h-screen w-screen bg-cover bg-center bg-no-repeat overflow-hidden flex flex-col items-center justify-center font-sans  relative"
+      style={{ backgroundImage: `url(${backgroundBg})`,
+              filter: 'contrast(1.05) brightness(1.1)'}}
     >
-      {/* Subtle Overlay */}
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] z-0" />
-
-      <div className="relative z-10 flex flex-col items-center max-w-2xl w-full">
-        
-        {/* 1. Prediction (Top) */}
-        <div className="h-32 flex flex-col items-center justify-end mb-8 text-center">
+      <div className="absolute inset-0 bg-black/5 z-0" />
+      <div className="relative z-10 flex flex-col items-center w-full">
+        <div className="h-32 flex flex-col items-center justify-center  text-center">
           {predictions && !isUploading ? (
             <div className="animate-in fade-in zoom-in duration-500">
-              <h3 className="text-6xl font-black text-black capitalize tracking-tighter">
+              <h3 className="font-black text-black ">
                 It's a {predictions.predicted_class}!
               </h3>
-              <p className="text-zinc-600 font-bold tracking-widest uppercase text-xs mt-2">
-                {predictions.confidence_percentage.toFixed(1)}% Match Confidence
+              <p className="text-black font-bold text-sm">
+                {predictions.confidence_percentage.toFixed(1)}% Accuracy
               </p>
             </div>
           ) : isUploading ? (
-            <p className="text-black font-black text-xl animate-pulse uppercase tracking-widest">
-              Analyzing Pixels...
-            </p>
+            <p className="text-black font-black text-xl animate-pulse tracking-widest uppercase">Analyzing...</p>
           ) : (
-            <h2 className="text-4xl font-black text-black uppercase tracking-tighter">
-              Animal Guesser
-            </h2>
+            <h2 className="text-2xl font-black text-black uppercase tracking-[0.3em]">PawNet</h2>
           )}
         </div>
 
-        {/* 2. Image Placeholder (Middle) */}
-        <div className="relative group">
-          <div className="  overflow-hidden transition-all duration-500">
-            <img
-              src={image || placeholderImg}
-              alt="Subject"
-              className={`w-full h-full object-cover transition-all duration-700 
-                ${!image ? 'opacity-30 grayscale' : 'opacity-100'}`}
-            />
-            
-            {/* Loading Overlay */}
-            {isUploading && (
-              <div className="absolute inset-0 bg-black/10 backdrop-blur-[2px] flex items-center justify-center">
-                <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
-              </div>
-            )}
+       <div className="relative">
+      <div className="w-[400px] h-[400px] bg-white rounded-[40px]  overflow-hidden flex items-center justify-center shadow-xl">
+        <img
+          src={image || placeholderImg}
+          alt="Subject"
+          className={`w-full h-full object-cover transition-all duration-700 
+            ${!image ? 'opacity-30 grayscale' : 'opacity-100'}`}
+        />
+        {isUploading && (
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center">
+            <div className="w-12 h-12 border-4 border-black border-t-transparent rounded-[40px] animate-spin" />
           </div>
-        </div>
+        )}
+      </div>
+    </div>
 
-        {/* 3. Upload Button (Bottom) */}
-        <div className="mt-12">
+        <div className="mt-12 pt-4 w-full flex justify-center">
           <label className="inline-block group">
             <span className={`
-              inline-block px-14 py-5 text-sm font-black tracking-[0.3em] uppercase transition-all duration-200
-              ${isUploading ? 'bg-zinc-200 text-zinc-400 cursor-not-allowed' : 'bg-black text-white hover:bg-zinc-800 hover:scale-110 active:scale-90 cursor-pointer shadow-2xl'}
+              inline-block px-16 py-4 text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300
+              ${isUploading ? 'bg-stone-400 text-stone-600' : 'text-white hover:bg-[#8B5E34] hover:-translate-y-1 active:translate-y-0 cursor-pointer shadow-xl'}
             `}>
-              {isUploading ? 'Wait...' : 'Upload Image'}
+              {isUploading ? 'PLEASE WAIT' : 'UPLOAD IMAGE'}
             </span>
             <input
               type="file"
