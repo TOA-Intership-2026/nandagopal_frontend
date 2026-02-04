@@ -5,6 +5,7 @@ import { translations, type Language } from './transalation';
 import LangToggle from './components/LangToggle';
 import ImageDisplay from './components/ImageDisplay';
 import { uploadImageToModel} from './services/ModelRequest';
+import UploadButton from './components/UploadButton';
 interface Prediction {
   confidence_percentage: number;
   predicted_class: string;
@@ -76,23 +77,12 @@ const App: React.FC = () => {
         translatedAnimal={predictions ? getTranslatedAnimal(predictions.predicted_class) : ''}
       />
 
-      <div className="mt-12 pt-4 w-full flex justify-center">
-        <label className="inline-block group">
-          <span className={`
-            inline-block px-16 py-4 text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300
-            ${isUploading ? 'bg-stone-400 text-white' : 'bg-[#8f5d06] text-[#f1f5f0] '}
-          `}>
-            {isUploading ? t.wait : t.upload}
-          </span>
-          <input
-            type="file"
-            className="hidden"
-            onChange={handleUpload}
-            accept="image/*"
-            disabled={isUploading}
-          />
-        </label>
-      </div>
+      <UploadButton 
+          isUploading={isUploading}
+          uploadText={t.upload}
+          waitText={t.wait}
+          onUpload={handleUpload}
+        />
     </div>
   </div>
 );
