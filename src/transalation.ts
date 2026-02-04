@@ -8,28 +8,31 @@ export interface Translation {
   resultPrefix: string;
   resultSuffix: string;
   animals: Record<string, string>;
+  title:string;
 }
 
 export const translations: Record<Language, Translation> = {
   en: {
-    analyzing: "ANALYZING...",
-    match: "ACCURACY",
+    analyzing: "Analyzing...",
+    match: "Accuracy",
     upload: "UPLOAD IMAGE",
-    wait: "PLEASE WAIT",
-    resultPrefix: "It's a",
+    wait: "Please Wait",
+    resultPrefix: "It's a ",
     resultSuffix: "!",
-    animals: { dog: "Dog", cat: "Cat" }
+    animals: { dog: "Dog", cat: "Cat" },
+    title:"PawNet"
   },
  jp: {
-    analyzing: "かいせきちゅう...", // Analyzing (Hiragana)
-    match: "のせいど", // Accuracy (Hiragana)
-    upload: "ファイルをアップロード", // Upload Image (Hiragana)
-    wait: "おまちください", // Please wait (Hiragana)
-    resultPrefix: "これは ", // This is...
-    resultSuffix: " です！", // ...is!
+    analyzing: "かいせきちゅう...", 
+    match: "のせいど", 
+    upload: "ファイルをアップロード", 
+    wait: "おまちください", 
+    resultPrefix: "これは ", 
+    resultSuffix: " です！", 
     animals: { 
-      dog: "いぬ", // Dog (Standard Katakana)
-      cat: "ねこ"  // Cat (Standard Katakana)
-    }
+      dog: "いぬ", 
+      cat: "ねこ" 
+    },
+    title:"にくきゅう・ネット"
   }
 };
