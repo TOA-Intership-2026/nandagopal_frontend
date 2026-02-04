@@ -80,7 +80,7 @@ const App: React.FC = () => {
         <label className="inline-block group">
           <span className={`
             inline-block px-16 py-4 text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300
-            ${isUploading ? 'bg-stone-400 text-white' : 'bg-[#8f5d06] text-[#f1f5f0] hover:bg-black hover:-translate-y-1 active:translate-y-0 cursor-pointer shadow-xl'}
+            ${isUploading ? 'bg-stone-400 text-white' : 'bg-[#8f5d06] text-[#f1f5f0] '}
           `}>
             {isUploading ? t.wait : t.upload}
           </span>
