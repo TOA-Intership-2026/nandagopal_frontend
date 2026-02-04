@@ -79,7 +79,7 @@ const App: React.FC = () => {
       <div className="flex flex-col items-center justify-center text-center">
         <h2 className="text-2xl uppercase tracking-[0.2em] relative z-10">PawNet</h2>
         <div className="absolute inset-0 bg-black/5 z-0" />
-        
+        <h1></h1><br></br><br></br>
         <div className="relative z-10 flex flex-col items-center w-full">
           <div className="h-32 flex flex-col items-center justify-center text-center">
             {predictions && !isUploading ? (
