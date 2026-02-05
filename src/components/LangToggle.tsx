@@ -11,10 +11,10 @@ const LangToggle: React.FC<Props> = ({ lang, onToggle }) => (
     onClick={onToggle}
     className="
       /* Absolute positioning in the top-right of the screen */
-      absolute top-8 right-8 z-50 
+      absolute top-4 right-4 sm:top-8 sm:right-8 z-50 
       
       /* Visual styling */
-      px-6 py-2.5 rounded-full 
+      px-4 py-2 sm:px-6 sm:py-2.5 rounded-full 
       bg-white/20 backdrop-blur-md 
       border border-white/40 
       shadow-lg 

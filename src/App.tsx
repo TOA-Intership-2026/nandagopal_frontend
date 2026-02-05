@@ -52,19 +52,21 @@ const App: React.FC = () => {
 
   return (
   <div 
-    className="h-screen w-screen bg-cover bg-center bg-no-repeat font-sans relative overflow-hidden"
+    className="min-h-screen w-full bg-cover bg-center bg-no-repeat font-sans relative mobile-bg-optimize"
     style={{ 
       backgroundImage: `url(${backgroundBg})`,
-      filter: 'contrast(1.05) brightness(1.1)'
+      filter: 'contrast(1.05) brightness(1.1)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center'
     }}
   >
-    <div className="absolute inset-0 bg-black/5 z-0" />
+    <div className="absolute inset-0 bg-black/5 sm:bg-black/5 bg-black/10 z-0" />
 
     <LangToggle lang={lang} onToggle={toggleLanguage} />
 
-    <div className="flex flex-col items-center justify-center h-full w-full relative z-10">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full relative z-10 px-4 py-8 sm:px-6 lg:px-8">
       
-      <h2 className="text-2xl tracking-[0.1em] mb-4 text-white drop-shadow-md">
+      <h2 className="text-xl sm:text-2xl lg:text-3xl tracking-[0.1em] mb-4 sm:mb-6 text-white drop-shadow-md text-center">
         {t.title}
       </h2>
 
