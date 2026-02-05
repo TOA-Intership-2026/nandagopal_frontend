@@ -2,14 +2,24 @@
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-
 }
+
 @layer base {
   body, html {
     margin: 0;
-    overflow: hidden; /* Prevents accidental scrolling */
+    /* Allow scrolling on mobile if needed */
   }
 }
+
+/* Mobile background optimizations */
+@media (max-width: 640px) {
+  .mobile-bg-optimize {
+    background-attachment: scroll !important;
+    background-size: cover !important;
+    background-position: center 30% !important;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

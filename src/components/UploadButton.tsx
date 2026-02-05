@@ -9,10 +9,10 @@ interface Props {
 
 const UploadButton: React.FC<Props> = ({ isUploading, uploadText, waitText, onUpload }) => {
   return (
-    <div className="mt-12 pt-4 w-full flex justify-center relative z-10">
+    <div className="mt-8 sm:mt-12 pt-4 w-full flex justify-center relative z-10 px-4">
       <label className="inline-block group">
         <span className={`
-          inline-block px-16 py-4 rounded-xl text-sm font-black tracking-[0.2em] uppercase 
+          inline-block px-8 py-3 sm:px-16 sm:py-4 rounded-xl text-xs sm:text-sm font-black tracking-[0.2em] uppercase 
           
           transition-all duration-300 transform
           
